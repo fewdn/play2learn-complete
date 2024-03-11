@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # local apps
-    "games.apps.GamesConfig"
+    "games.apps.GamesConfig",
+    "users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
@@ -102,6 +103,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# AUTHENTICATION SETTINGS
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
