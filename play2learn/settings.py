@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # local apps
+    "common.apps.CommonConfig",
     "games.apps.GamesConfig",
     "users.apps.UsersConfig",
     "reviews.apps.ReviewsConfig",
@@ -132,3 +133,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+if os.environ.get('ENVIRONMENT') != 'production':
+    from .local_settings import *
+# DO NOT PUT ANYTHING BELOW THIS
