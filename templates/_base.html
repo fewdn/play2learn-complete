@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 {% block html %}
 <html lang="en">
@@ -12,10 +13,35 @@
 <body>
   {% block body %}
   <header>
-    <nav>
-      <a href="{% url 'games:homepage' %}">Homepage</a> |
-      <a href="{% url 'games:anagram-hunt' %}">Anagram Hunt</a> |
-      <a href="{% url 'games:math-facts' %}">Math Facts</a>
+    <nav class="navbar navbar-expand-lg bg-white border-bottom border-secondary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'games:homepage' %}"><img src="{% static 'images/play2learnlogo.png' %}" alt="logo"></a>
+        <button class="navbar-toggler" type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'games:homepage' %}" aria-current="page">Home</a>
+              <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+            </li>
+            <li class="nav-item dropdown ">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Games</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'games:anagram-hunt' %}">Anagram Hunt</a></li>
+                <li><a class="dropdown-item" href="{% url 'games:math-facts' %}">Math Facts</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
   {% block main %}{% endblock %}
