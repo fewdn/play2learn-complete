@@ -4,6 +4,19 @@
 {% block main %}
   <h1>Homepage</h1>
   <div class="container" style="width:400px;background-color:#dcb9f8">
+    {% if reviews %}
     <h2>Game Reviews</h2>
+  <div id="carouselReviews" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <!-- You must add the .active class to one of the slides to make the carousel visible -->
+      <div class="carousel-item active" data-bs-interval="100"><p></p></div>
+    {% for review in reviews %}
+      <div class="carousel-item" data-bs-interval="5000">
+        <p>{{ review.review }}</p>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+{% endif %}
   </div>
 {% endblock %}

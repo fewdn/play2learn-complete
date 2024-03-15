@@ -1,3 +1,3 @@
+from typing import Any
 from django.contrib import admin
-
-# Register your models here.
+from django.http import HttpRequest

@@ -4,4 +4,6 @@
 {% block main %}
   <h1>Anagram Hunt</h1>
   {{ block.super }}
+
+  <p><a href="{% url 'reviews:create' %}">Leave a Review</a></p>
 {% endblock %} 
