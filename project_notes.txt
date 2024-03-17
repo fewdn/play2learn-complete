@@ -1,0 +1,7 @@
+ISSUES:
+- django crispy forms installed Django 5 & uninstalled Django 4
+  this was a pain reinstalling django 4 and tracking down versions
+- attempting to set homepage path to pages app would conflict with VueJS
+  All VueJS apps would disappear, forcing the " " route to go in "games"
+
+  
