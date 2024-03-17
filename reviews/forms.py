@@ -10,7 +10,7 @@ class ReviewCreateForm(ModelForm):
         # exclude = ['featured', 'created'] only needed if fields = "__all__"
         widgets = {
             'review': Textarea(
-                attrs={'cols': 80, 'rows': 3, 'autofocus': True}
+                attrs={'cols': 70, 'rows': 3, 'autofocus': True}
             ),
         }
         help_texts = {

@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+
+{% block title %}Contact Us{% endblock %}
+{% block main %}
+  <h1>Contact Us</h1>
+  <div class="container" style="width:400px;">
+    <h2>Play2Learn Contact Form</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-success">Submit</button>
+    </form>
+  </div>
+{% endblock %}
