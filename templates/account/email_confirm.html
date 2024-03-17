@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Confirm Signup{% endblock %}
+
+{% block main %}
+<div class="card border-primary m-auto my-3" style="max-width:25rem">
+  <div class="card-header text-center fs-4">Confirm Account Signup</div>
+  <div class="card body py-2">
+    {% if confirmation %}
+      <p class="card-text text-center">Please confirm your new account creation.</p>
+      <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+        {% csrf_token %}
+        <button class="form-control btn btn-primary">Confirm</button>
+    </form>
+   {% else %}
+     <p class="card-text">This confirmation link has expired or is invalid.
+        Please try <a href="{% url 'account_email' %}">logging in again</a>.
+        You will be sent a new confirmation link.
+     </p>
+   {% endif %}
+  </div>
+</div>
+{% endblock %}
