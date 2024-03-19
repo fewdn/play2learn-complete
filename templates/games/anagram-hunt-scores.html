@@ -1,0 +1,31 @@
+{% extends "_base.html" %}
+
+{% block title %}Anagram Hunt Scores{% endblock %}
+{% block main %}
+  <h1>Anagram Hunt Top Scores</h1>
+  <div class="container" style="max-width:40rem">
+  
+  <table class="table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Score</th>
+        <th scope="col">User</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for score in scores  %}
+    
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ score.score }}</td>
+        <td>{{ score.user }}</td><!-- consider using combo of firstname and lastname instead -->
+        <td>{{ score.created }}</td>
+      </tr>
+    
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+{% endblock %}

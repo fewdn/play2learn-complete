@@ -2,6 +2,7 @@ from typing import Any
 from django.shortcuts import render
 
 from reviews.models import Review
+from games.models import AnagramHuntScore, MathFactsScore
 
 # Create your views here.
 from django.views.generic import TemplateView
@@ -21,3 +22,41 @@ class HomepageView(TemplateView):
         if reviews.count() > 0:
             context['reviews'] = reviews
         return context
+    
+class AnagramHuntScoresView(TemplateView):
+    template_name = "games/anagram-hunt-scores.html"
+    # order descending from highest to lowest score
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        scores = AnagramHuntScore.objects.order_by("-score")
+        if scores.count() > 0:
+            context['scores'] = scores
+        return context
+
+class AnagramHuntUserScoresView(TemplateView):
+    template_name = "games/anagram-hunt-user-scores.html"
+    # filter by user
+    # order descending from highest to lowest score
+    #def get_context_data(self, **kwargs):
+    #    context = super().get_context_data(**kwargs)
+    #    scores = AnagramHuntScore.objects.filter(user=self.request.user).order_by("-score")
+    #    if scores.count() > 0:
+    #        context['scores'] = scores
+    #    return context
+
+class MathFactsScoresView(TemplateView):
+    template_name = "games/math-facts-scores.html"
+    # order from highest to lowest score
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        scores = MathFactsScore.objects.order_by("-score")
+        if scores.count() > 0:
+            context['scores'] = scores
+        return context
+
+class MathFactsUserScoresView(TemplateView):
+    template_name = "games/math-facts-user-scores.html"
+    # filter by current logged in user
+    # order descending from highest to lowest score 
