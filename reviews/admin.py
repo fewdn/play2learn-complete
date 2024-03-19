@@ -7,10 +7,10 @@ from .models import Review
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     model = Review
-    list_display = ['review', 'created', 'featured']
+    list_display = ['user', 'review', 'created', 'featured']
 
-    def get_readonly_fields(self, request, obj=None):
-        if obj:
-            return ('created')
-        
-        return ()
+    #def get_readonly_fields(self, request, obj=None):
+    #    if obj:
+    #       return ('created')
+    #    
+    #    return ()

@@ -4,6 +4,7 @@
 {% block main %}
   <h1>Anagram Hunt</h1>
   {{ block.super }}
-
+  {% if user.is_authenticated %}
   <p><a href="{% url 'reviews:create' %}">Leave a Review</a></p>
+  {% endif %}
 {% endblock %} 
