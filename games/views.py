@@ -1,5 +1,6 @@
 from typing import Any
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from reviews.models import Review
 from games.models import AnagramHuntScore, MathFactsScore
@@ -34,16 +35,18 @@ class AnagramHuntScoresView(TemplateView):
             context['scores'] = scores
         return context
 
-class AnagramHuntUserScoresView(TemplateView):
+class AnagramHuntUserScoresView(LoginRequiredMixin, TemplateView):
     template_name = "games/anagram-hunt-user-scores.html"
+    # login_url = "/login" defaults to settings.LOGIN_URL if not provided
     # filter by user
     # order descending from highest to lowest score
-    #def get_context_data(self, **kwargs):
-    #    context = super().get_context_data(**kwargs)
-    #    scores = AnagramHuntScore.objects.filter(user=self.request.user).order_by("-score")
-    #    if scores.count() > 0:
-    #        context['scores'] = scores
-    #    return context
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        scores = AnagramHuntScore.objects.filter(user=self.request.user).order_by("-score")
+        if scores.count() > 0:
+            context['scores'] = scores
+        return context
 
 class MathFactsScoresView(TemplateView):
     template_name = "games/math-facts-scores.html"
@@ -56,7 +59,16 @@ class MathFactsScoresView(TemplateView):
             context['scores'] = scores
         return context
 
-class MathFactsUserScoresView(TemplateView):
+class MathFactsUserScoresView(LoginRequiredMixin, TemplateView):
     template_name = "games/math-facts-user-scores.html"
+    # login_url = "/login" defaults to settings.LOGIN_URL if you don't specify this
+
     # filter by current logged in user
     # order descending from highest to lowest score 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        scores = MathFactsScore.objects.filter(user=self.request.user).order_by("-score")
+        if scores.count() > 0:
+            context['scores'] = scores
+        return context
