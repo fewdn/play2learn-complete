@@ -143,7 +143,7 @@ LOGIN_REDIRECT_URL = '/'
 # django-allauth settings
 ACCOUNT_AUTHENTICATION_METHOD = 'username' # default: 'username'  Change this to "email" when enabling Sendgrid
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1 # default: 3
-ACCOUNT_EMAIL_REQUIRED = False # Default: False                   Change to True when enabling Sendgrid
+ACCOUNT_EMAIL_REQUIRED = True # Default: False                   
 ACCOUNT_EMAIL_VERIFICATION = 'none' # default: 'optional'         Change to 'mandatory' when enabling Sendgrid to prevent logging in before email confirmation
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5 # default: 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300 # default 300

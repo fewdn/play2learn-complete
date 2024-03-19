@@ -34,7 +34,7 @@
               <a class="nav-link" href="/" aria-current="page">Home</a>
               <li class="nav-item"><a class="nav-link" href="{% url 'pages:about-us' %}">About</a></li>
             </li>
-            <li class="nav-item dropdown ">
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Games</a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'games:anagram-hunt' %}">Anagram Hunt</a></li>
@@ -42,18 +42,24 @@
               </ul>
             </li>
           </ul>
-          {% if user.is_authenticated %}
-          <div class="d-flex">
-            <span class="nav-text text-success fw-bold me-2">{{ user.get_username }}</span> <a class="nav-link text-primary" href="/account/logout/">Logout</a>
-          </div>
-          {% else %}
-          <div class="d-flex">
-            <a class="nav-link text-primary me-2 py-2" href="/account/login/">Login</a>
-          </div>
-          <div class="d-flex">
-            <a class="nav-link text-primary py-2" href="/account/signup/">Signup</a>
-          </div>
-          {% endif %}
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-success fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ user.get_username|upper }}</a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="{% url 'my-account' %}">My Account</a></li>
+                  <li><form method="post" action="{% url 'account_logout' %}">{% csrf_token %}<button class="btn dropdown-item">Logout</button></form></li>
+                </ul>
+              </li>
+            </ul>
+            {% else %}
+            <div class="d-flex">
+              <a class="nav-link text-primary me-2 py-2" href="/account/login/">Login</a>
+            </div>
+            <div class="d-flex">
+              <a class="nav-link text-primary py-2" href="/account/signup/">Signup</a>
+            </div>
+            {% endif %}
         </div>
       </div>
     </nav>

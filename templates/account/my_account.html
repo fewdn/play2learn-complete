@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}My Account{% endblock %}
+
+{% block main %}
+<div class="card border-primary m-auto my-3" style="max-width:25rem">
+  <div class="card-header text-center fs-4">My Account</div>
+  <div class="card body py-2">
+    <form method="post" class="m-auto" style="width:90%">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button class="form-control btn btn-primary">Update</button>
+    </form>
+  </div>
+  <div class="card-footer">
+    <p><a href="{% url 'account_change_password' %}">Change Password</a></p>
+  </div>
+</div>
+{% endblock %}
