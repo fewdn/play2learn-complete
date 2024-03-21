@@ -6,3 +6,4 @@ class ContactUsForm(forms.Form):
     )
     last_name = forms.CharField()
     email = forms.EmailField()
+    comment = forms.CharField(max_length=80, widget=forms.Textarea)
