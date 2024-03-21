@@ -1,10 +1,14 @@
 {% extends "_base.html" %}
 
 {% block title %}Anagram Hunt Scores{% endblock %}
+{% block page_name %}Anagram Hunt Scores{% endblock %}
 {% block main %}
   
   <div class="container" style="max-width:40rem">
-    <h1>Anagram Hunt Top Scores</h1>
+    <h2>Top Scores 
+        <span style="font-size:1.3rem;font-weight:normal;">(My Scores)</span>
+        <span style="font-size:1.3rem;font-weight:normal;float:right;">
+        <a href="{% url 'games:anagram-hunt-scores' %}">All Users</a></span></h2>
     {% if scores %}
   <table class=" table table-striped">
     <thead>

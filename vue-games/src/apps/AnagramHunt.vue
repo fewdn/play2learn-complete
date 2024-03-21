@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="width: 500px">
     <!-- Start Screen -->
-    <div v-if="screen=='start'" class="container">
+    <div v-if="screen=='start'" class="container p-2">
       <div class="row m-auto">
         <div class="col">
           <div class="row">
@@ -129,6 +129,15 @@ export default {
     async recordScore() {
       // TODO: when Anagram Hunt finishes, make an Ajax call with axios (this.axios)
       // to record the score on the backend
+      const data = {
+        "score": this.score,
+        "time_left": this.timeLeft,
+        "max_number": this.wordLength
+      }
+
+      const response = (await this.axios.post("/record-anagram-hunt-score/", data)).data;
+
+      console.log(response);
     }
   },
   watch: {

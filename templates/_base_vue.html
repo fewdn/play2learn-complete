@@ -6,13 +6,18 @@
   {% block head %}{{ block.super }}{% endblock %}
 <script defer src="http://localhost:8080/js/chunk-vendors.js"></script><script defer src="http://localhost:8080/js/app.js"></script></head>
 <body>
-{% block body %}
-  {{ block.super }}
-  <noscript>
-    <strong>Javascript is required to work properly. Please enable to continue.</strong>
-  </noscript>
-  <div id="app"></div>
-{% endblock body %}
+  {% block header %}{{ block.super }}{% endblock %}
+  <main>
+    {% block main %}
+      <h1>{% block page_name %}{% endblock %}</h1>
+      <noscript>
+        <strong>Javascript is required to work properly. Please enable to continue.</strong>
+      </noscript>
+      <div id="app"></div>
+    {% endblock main %}
+  </main>
+  {% block end_content %}{{ block.super }}{% endblock %}
+  {% block footer %}{{ block.super }}{% endblock footer %}
 </body>
 </html>
 {% endblock html %}

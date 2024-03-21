@@ -1,10 +1,17 @@
 {% extends "_base.html" %}
 
 {% block title %}Math Facts Scores{% endblock %}
+{% block page_name %}Math Facts Scores{% endblock %}
 {% block main %}
-  <h1>Math Facts Top Scores</h1>
   <div class="container" style="max-width:40rem">
-  
+  <h2>Top Scores 
+    <span style="font-size:1.3rem;font-weight:normal;">(All Users)</span>
+    {% if user.is_authenticated %}
+      <span style="font-size:1.3rem;font-weight:normal; float:right;">
+        <a href="{% url 'games:math-facts-user-scores' %}">My Top Scores</a>
+      </span>
+    {% endif %}
+  </h2>
   <table class=" table table-striped">
     <thead>
       <tr>

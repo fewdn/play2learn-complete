@@ -1,23 +1,28 @@
 {% extends "_base.html" %}
 
 {% block title %}Home{% endblock %}
+{% block page_name %}Homepage{% endblock %}
 {% block main %}
-  <h1>Homepage</h1>
-  <div class="container" style="width:400px;">
-    <h2>Welcome to Play2Learn Final Project</h2>
+  <div class="container text-center" style="width:400px;">
+    <h2>Play2Learn Final Project</h2>
     {% if reviews %}
-      <p>Read about our user's experiences.</p>
+      <p>Read user's experiences.</p>
       <div id="carouselReviews" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner p-2" style="background-color:#dcb9f8">
+        <div class="carousel-inner p-2 bg-white" style="border-radius:1rem;">
           <!-- You must add the .active class to one of the slides to make the carousel visible -->
           <div class="carousel-item active" data-bs-interval="100"><p>&nbsp; </p></div>
           {% for review in reviews %}
-          <div class="carousel-item" data-bs-interval="5000">
-            <p>{{ review.review }}</p>
+          <div class="carousel-item text-center" data-bs-interval="5000">
+            <p>{{ review.review|capfirst }} -- <em style="color:rgb(207, 164, 45);">{{ review.user.username }}</em></p>
           </div>
           {% endfor %}
         </div>
       </div>
+    {% else %}
+      <p>This site is a work in progress.</p>
+    {% endif %}
+    {% if user.is_authenticated %}
+       <p class="mt-3"><a href="{% url 'reviews:create' %}">Leave a Review</a></p>
     {% endif %}
   </div>
 {% endblock %}

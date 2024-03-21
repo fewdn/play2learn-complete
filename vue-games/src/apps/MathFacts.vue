@@ -1,8 +1,8 @@
 <template>
-  <div class="container" style="width: 500px">
+  <div class="container" style="width: 500px;">
     <!-- Start Screen -->
-    <div v-if="screen=='start'" class="container">
-      <div class="row">
+    <div v-if="screen=='start'" class="container p-2">
+      <div class="row m-auto">
         <div class="col">
           <div class="row">
             <label for="operation" class="form-label col-3">Operation</label>
@@ -161,6 +161,16 @@ export default {
     async recordScore() {
       // TODO: when Math Facts finishes, make an Ajax call with axios (this.axios)
       // to record the score on the backend
+      const data = {
+        "score": this.score,
+        "time_left": this.timeLeft,
+        "max_number": this.maxNumber,
+        "operator": Object.keys(this.operations).find(key => this.operations[key] === this.operation) + " " + this.operation
+      }
+
+      const response = (await this.axios.post("/record-math-facts-score/", data)).data;
+
+      console.log(response);
     }
   },
   computed: {
