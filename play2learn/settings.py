@@ -100,6 +100,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'games',
+#         'USER': 'postgres',
+#         'PASSWORD': 'YOURPASSWORD',
+#         'HOST': 'localhost',
+#         'PORT': 5432
+#      }
+# }
+
 # EMAIL
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 EMAIL_HOST = 'smtp.sendgrid.net'
